@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+}
+
+@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, winter;
+}
+
+@layer base {
+  h1 {
+    @apply font-extrabold text-2xl mb-3
+  }
+}
