@@ -3,16 +3,20 @@ import UserTable from "./UserTable";
 import { Suspense } from "react";
 
 interface Props {
-  searchParams: { sortOrder: string };
+  searchParams: Promise<{ sortOrder: string }>;
 }
 
-const UserPage = async ({ searchParams: { sortOrder } }: Props) => {
+const UserPage = async ({ searchParams }: Props) => {
+  const { sortOrder } = await searchParams;
+
   return (
     <>
       <h1>Users</h1>
-      <Link href='/users/new'className="btn">New User</Link>
+      <Link href="/users/new" className="btn">
+        New User
+      </Link>
       <Suspense fallback={<p>Loading...</p>}>
-      <UserTable sortOrder={sortOrder}/>
+        <UserTable sortOrder={sortOrder} />
       </Suspense>
     </>
   );
